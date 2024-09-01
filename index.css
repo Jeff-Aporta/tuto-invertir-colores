@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+  &:has(.invertir-colores input:checked) {
+    .inversor-de-colores {
+      opacity: 1;
+    }
+  }
+}
+
+div.footer {
+  background-color: dodgerblue;
+  color: white;
+
+  padding: 20px;
+}
+
+.inversor-de-colores {
+  opacity: 0;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+
+  backdrop-filter: invert(100%);
+
+  pointer-events: none;
+  user-select: none;
+
+  transition: all 0.3s;
+}
+
+.invertir-colores {
+  font-size: 200%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    scale: 2;
+  }
+}
