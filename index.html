@@ -1,39 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invertir colores</title>
-    <link rel="stylesheet" href="index.css">
+    <title>Invertir colores con React y MUI</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/@mui/material@5.14.10/umd/material-ui.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
-    <div class="inversor-de-colores"></div>
-    <label class="invertir-colores">
-        <input type="checkbox" id="invertir" />
-        Invertir colores
-    </label>
-    <h1>Ejemplo de Título de la página</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, est
-      inventore molestias deleniti eligendi amet praesentium cupiditate sequi
-      iste, quidem non vel, rerum fuga repellendus nobis ipsum consequuntur
-      harum sint maiores dolor! Dignissimos inventore autem dolor? Dolor
-      aspernatur asperiores, tempora quos, ipsam placeat ea reprehenderit
-      aliquam quidem, nemo rem error neque molestias magnam minus veritatis?
-      Blanditiis temporibus sunt quisquam nihil cumque corrupti! Autem enim
-      sequi ad incidunt ut culpa labore modi similique esse! Veniam laudantium
-      illum cumque ducimus blanditiis debitis quidem laborum dolorum corporis
-      cupiditate fugit aperiam placeat in similique eum, dolorem eaque corrupti!
-      Quos, unde! Distinctio repellendus adipisci maxime.
-    </p>
-    <img src="https://picsum.photos/200/300" alt="Imagen de ejemplo" />
-    <img src="https://picsum.photos/201/300" alt="Imagen de ejemplo" />
-    <img src="https://picsum.photos/202/300" alt="Imagen de ejemplo" />
-    <img src="https://picsum.photos/203/300" alt="Imagen de ejemplo" />
-    <div class="footer">
-        <h1>
-            Más contenido de la página
-        </h1>
-    </div>
+    <div id="root"></div>
+    <div id="overlay" class="inversor-de-colores"></div>
+    <script type="text/babel">
+      const { Button, Box, Container, Typography, Grid, CssBaseline } =
+        MaterialUI;
+      function App() {
+        const [invert, setInvert] = React.useState(false);
+        React.useEffect(() => {
+          document.getElementById("overlay").style.opacity = invert ? 1 : 0;
+        }, [invert]);
+        return (
+          <React.Fragment>
+            <CssBaseline />
+            <Box sx={{ position: "fixed", top: 20, right: 20, zIndex: 1100 }}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={() => setInvert(!invert)}
+                sx={{ boxShadow: 3, textTransform: "none" }}
+              >
+                <React.Fragment>
+                  <i
+                    className={invert ? "fas fa-undo" : "fas fa-adjust"}
+                    style={{ marginRight: 8 }}
+                  ></i>
+                  {invert ? "Restaurar colores" : "Invertir colores"}
+                </React.Fragment>
+              </Button>
+            </Box>
+            <Container sx={{ mt: 10, mb: 4 }}>
+              <Typography variant="h3" component="h1" gutterBottom>
+                Invertir colores en tu página con un clic
+              </Typography>
+              <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+                <Box
+                  component="iframe"
+                  width="1000"
+                  height="563"
+                  src="https://www.youtube.com/embed/nz25dn0e2g0"
+                  title="Tutorial invertir colores"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </Box>
+              <Typography variant="body1" paragraph color="textSecondary">
+                Aprende cómo invertir todos los colores de tu sitio web al instante usando React y Material UI. Haz clic en el botón para ver el efecto en vivo.
+              </Typography>
+              <Grid container spacing={2}>
+                {[200, 201, 202, 203].map((n, i) => (
+                  <Grid item xs={12} sm={6} md={3} key={i}>
+                    <Box
+                      component="img"
+                      src={`https://picsum.photos/${n}/300`}
+                      alt="Imagen de ejemplo"
+                      sx={{ width: "100%", borderRadius: 2, boxShadow: 1 }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+              <Box
+                component="footer"
+                sx={{
+                  mt: 4,
+                  py: 2,
+                  textAlign: "center",
+                  backgroundColor: "primary.main",
+                  color: "primary.contrastText",
+                  borderRadius: 1,
+                }}
+              >
+                <Typography variant="h6">Más contenido de la página</Typography>
+              </Box>
+              <Box sx={{ mt: 2, textAlign: "center" }}>
+                <Button
+                  component="a"
+                  href="tuto-youtube.html"
+                  variant="outlined"
+                  color="primary"
+                  startIcon={
+                    <i
+                      className="fab fa-youtube"
+                      style={{ color: "#FF0000" }}
+                    ></i>
+                  }
+                >
+                  Ir al tutorial de YouTube
+                </Button>
+              </Box>
+            </Container>
+          </React.Fragment>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
   </body>
 </html>

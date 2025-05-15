@@ -1,46 +1,107 @@
+/* Reset y tipografía */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
-  font-family: Arial, Helvetica, sans-serif;
-
-  &:has(.invertir-colores input:checked) {
-    .inversor-de-colores {
-      opacity: 1;
-    }
-  }
+  font-family: 'Poppins', sans-serif;
+  background: #f4f7f8;
+  color: #333;
+  line-height: 1.6;
 }
 
-div.footer {
-  background-color: dodgerblue;
-  color: white;
-
-  padding: 20px;
+/* Layout principal */
+.container {
+  max-width: 800px;
+  margin: 100px auto 20px;
+  padding: 0 20px;
+}
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #555;
 }
 
-.inversor-de-colores {
-  opacity: 0;
+/* Grid de imágenes */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 40px;
+}
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background: dodgerblue;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Toggle Switch */
+#invertir {
+  display: none;
+}
+.toggle-wrapper {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-
-  backdrop-filter: invert(100%);
-
-  pointer-events: none;
-  user-select: none;
-
-  transition: all 0.3s;
-}
-
-.invertir-colores {
-  font-size: 200%;
+  top: 20px;
+  right: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 10px;
+  font-size: 1rem;
+  z-index: 1100;
+}
+.switch {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  background: #ccc;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.switch .slider {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+#invertir:checked + .toggle-wrapper .switch {
+  background: #4caf50;
+}
+#invertir:checked + .toggle-wrapper .switch .slider {
+  transform: translateX(26px);
+}
 
-  input {
-    scale: 2;
-  }
+/* Inversor de colores */
+.inversor-de-colores {
+  opacity: 0;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  backdrop-filter: invert(100%);
+  transition: opacity 0.5s ease;
+  z-index: 1000;
+}
+#invertir:checked ~ .inversor-de-colores {
+  opacity: 1;
 }
