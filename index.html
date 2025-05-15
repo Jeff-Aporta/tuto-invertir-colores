@@ -31,8 +31,17 @@
     <div id="root"></div>
     <div id="overlay" class="inversor-de-colores"></div>
     <script type="text/babel">
-      const { Button, Box, Container, Typography, Grid, CssBaseline } =
-        MaterialUI;
+      const {
+        Button,
+        Box,
+        Container,
+        Typography,
+        Grid,
+        CssBaseline,
+        AppBar,
+        Toolbar,
+        IconButton,
+      } = MaterialUI;
       function App() {
         const [invert, setInvert] = React.useState(false);
         React.useEffect(() => {
@@ -41,8 +50,44 @@
         return (
           <React.Fragment>
             <CssBaseline />
-            <Box sx={{ position: "fixed", top: 20, right: 20, zIndex: 1100 }}>
+            <AppBar position="static">
+              <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  Invertir Colores
+                </Typography>
+                <Button
+                  component="a"
+                  href="https://github.com/Jeff-Aporta/tuto-invertir-colores"
+                  target="_blank"
+                  color="inherit"
+                  startIcon={<i className="fab fa-github" />}
+                  variant="text"
+                  size="small"
+                  sx={{ textTransform: "none" }}
+                >
+                  <Typography variant="body2">Repositorio GitHub</Typography>
+                </Button>
+                <Button
+                  component="a"
+                  href="https://www.youtube.com/@JeffAporta"
+                  target="_blank"
+                  color="inherit"
+                  startIcon={
+                    <i className="fab fa-youtube"  />
+                  }
+                  variant="text"
+                  size="small"
+                  sx={{ textTransform: "none", ml: 1 }}
+                >
+                  <Typography variant="body2">@JeffAporta</Typography>
+                </Button>
+              </Toolbar>
+            </AppBar>
+            <Box
+              sx={{ position: "fixed", bottom: 20, right: 20, zIndex: 1100 }}
+            >
               <Button
+                className="heartbox"
                 variant="contained"
                 color="secondary"
                 size="large"
@@ -62,7 +107,7 @@
               <Typography variant="h3" component="h1" gutterBottom>
                 Invertir colores en tu página con un clic
               </Typography>
-              <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+              <Box sx={{ mt: 4, display: "flex", justifyContent: "center" }}>
                 <Box
                   component="iframe"
                   width="1000"
@@ -74,8 +119,11 @@
                   allowFullScreen
                 />
               </Box>
+              <br />
               <Typography variant="body1" paragraph color="textSecondary">
-                Aprende cómo invertir todos los colores de tu sitio web al instante usando HTML y CSS. Haz clic en el botón para ver el efecto en vivo.
+                Aprende cómo invertir todos los colores de tu sitio web al
+                instante usando HTML y CSS. Haz clic en el botón para ver el
+                efecto en vivo.
               </Typography>
               <Grid container spacing={2}>
                 {[200, 201, 202, 203].map((n, i) => (
